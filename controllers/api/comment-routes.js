@@ -2,97 +2,100 @@ const { Post, User, Comment } = require('../../models');
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 
-// get all comments
+// GET all comments
 router.get('/', async (req, res) => {
-    try{
+    try {
+        // Retrieve all comments, including the username of the comment author
         const commentData = await Comment.findAll({
             include: {
                 model: User,
                 attributes: ['username']
             }
-        })
-        res.status(200).json(commentData)
-    }
-    catch (err) {
-        console.log(err);
+        });
+        res.status(200).json(commentData);
+    } catch (err) {
+        console.error(err);
         res.status(400).json(err);
     }
 });
 
-// create new comment
+// POST a new comment
 router.post('/', withAuth, async (req, res) => {
-    try{
+    try {
+        // Create a new comment associated with the user
         const newComment = await Comment.create({
             comment_body: req.body.comment_body,
             post_id: req.body.post_id,
             user_id: req.session.user_id
-        })
-        res.status(200).json(newComment)
+        });
+        res.status(201).json(newComment);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json(err);
     }
-    catch(err) {
-            console.log(err);
-            res.status(400).json(err);
-        }
 });
 
-// update comment
+// UPDATE a comment
 router.put('/:id', withAuth, async (req, res) => {
-    const thisComment = await Comment.findOne({
-        where: {
-            id: req.params.id
-        }
-    });
-    if (req.session.user_id === thisComment.user_id) {
-        try {
-            const updateComment = await Comment.update({
+    try {
+        // Find the comment by id
+        const thisComment = await Comment.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        // Check if the user owns the comment before updating
+        if (req.session.user_id === thisComment.user_id) {
+            const updatedComment = await Comment.update({
                 comment_body: req.body.comment_body,
-            },
-            {
+            }, {
                 where: {
                     id: req.params.id
                 },
-            })
-            if (!updateComment) {
-                res.status(404).json({ message: 'Cannot find comment with this id!'})
+            });
+            if (updatedComment[0] === 0) {
+                // If no rows were affected, the comment with the provided id doesn't exist
+                res.status(404).json({ message: 'Comment not found' });
+            } else {
+                res.status(200).json(updatedComment);
             }
-            res.status.json(updateComment)
+        } else {
+            res.status(403).json({ message: 'You are not authorized to update this comment' });
         }
-        catch (err) {
-            res.status(400).json(err)
-        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
     }
 });
 
-// delete comment 
+// DELETE a comment 
 router.delete('/:id', withAuth, async (req, res) => {
-    const thisComment = await Comment.findOne({
-        where: {
-            id: req.params.id
-        }
-    });
-    console.log(thisComment)
-    console.log(thisComment.user_id)
-    console.log(req.session.user_id)
-
-    if (req.session.user_id === thisComment.user_id) {
-        try {
-            const oneComment = await Comment.destroy({
+    try {
+        // Find the comment by id
+        const thisComment = await Comment.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        // Check if the user owns the comment before deleting
+        if (req.session.user_id === thisComment.user_id) {
+            const deletedComment = await Comment.destroy({
                 where: {
                     id: req.params.id
                 }
-            })
-            if (!oneComment) {
-                res.status(404).json({ message: 'No comment found with this id!'})
+            });
+            if (deletedComment === 0) {
+                // If no rows were affected, the comment with the provided id doesn't exist
+                res.status(404).json({ message: 'Comment not found' });
+            } else {
+                res.status(200).json(deletedComment);
             }
-            res.status(200).json(oneComment)
+        } else {
+            res.status(403).json({ message: 'You are not authorized to delete this comment' });
         }
-        catch (err) {
-        console.log(err);
+    } catch (err) {
+        console.error(err);
         res.status(500).json(err);
-        }
-    }
-    else {
-        res.status(400).json({ message: "You cannot delete a comment written by another user!"})
     }
 });
 

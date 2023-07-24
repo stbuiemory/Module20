@@ -2,142 +2,122 @@ const { Post, User, Comment } = require('../../models');
 const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 
-// get all user's posts
+// GET all user's posts
 router.get('/', async (req, res) => {
     try {
+        // Fetch all posts with their associated author (username) and comments (with comment authors)
         const allPosts = await Post.findAll({
-            attributes: [
-                'id',
-                'title',
-                'post_body',
-                'created_at'
-            ],
-            order: [
-                ['created_at', 'DESC']
-            ],
+            attributes: ['id', 'title', 'post_body', 'created_at'],
+            order: [['created_at', 'DESC']],
             include: [
                 {
                     model: User,
-                    attributes: ['username']
-                },
-                {
-                    model: Comment,
-                    attributes: [
-                        'id',
-                        'comment_body',
-                        'user_id'
-                    ],
-                    include: {
-                        model: User,
-                        attributes: ['username']
-                    }
-                }
-            ]
-        })
-        res.status(200).json(allPosts)
-    } 
-    catch(err){
-        console.log(err);
-        res.status(400).json(err);
-    }
-});
-
-// get post by id
-router.get('/:id', async (req, res) => {
-    try{
-        const getOnePost = await Post.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: [
-                'id',
-                'post_body',
-                'title',
-                'created_at'
-            ],
-            include: [{
-                    model: User,
-                    attributes: ['username']
+                    attributes: ['username'],
                 },
                 {
                     model: Comment,
                     attributes: ['id', 'comment_body', 'user_id', 'created_at'],
                     include: {
                         model: User,
-                        attributes: ['username']
-                    }
-                }
-            ]
-        })
-        if (!getOnePost) {
-            res.status(404).json({ message: 'No post found with this id!' });
-        }
-        res.status(200).json(getOnePost)
-    }
-    catch(err) {
-        console.log(err);
-        res.status(500).json(err);
+                        attributes: ['username'],
+                    },
+                },
+            ],
+        });
+        res.status(200).json(allPosts);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch posts' });
     }
 });
 
-// create new post 
+
+// GET post by id
+router.get('/:id', async (req, res) => {
+    try {
+        // Find a specific post by its id, including its author (username) and comments (with comment authors)
+        const getOnePost = await Post.findOne({
+            where: { id: req.params.id },
+            attributes: ['id', 'title', 'post_body', 'created_at'],
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment_body', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    },
+                },
+            ],
+        });
+
+        if (!getOnePost) {
+            res.status(404).json({ message: 'Post not found' });
+        } else {
+            res.status(200).json(getOnePost);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch the post' });
+    }
+});
+
+
+// CREATE new post
 router.post('/', withAuth, async (req, res) => {
     try {
+        // Create a new post associated with the user
         const newPost = await Post.create({
             title: req.body.title,
             post_body: req.body.post_body,
-            user_id: req.session.user_id
-        },
-        {
-            individualHooks: true
+            user_id: req.session.user_id,
         });
-        res.status(200).json(newPost)
-    }
-    catch(err) {
-        console.log(err);
-        res.status(400).json(err);
+        res.status(201).json(newPost);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ error: 'Failed to create the post' });
     }
 });
 
-// update post
+// UPDATE post
 router.put('/:id', withAuth, async (req, res) => {
-    console.log(req.body, req.params.id)
-    try{
+    try {
+        // Update a specific post by its id, making sure the user owns the post
         const updatePost = await Post.update(req.body, {
-            where: {
-                id: req.params.id
-            },
-            individualHooks: true
-        })
-        if (!updatePost) {
-            res.status(404).json({ message: 'No post found with this id!' });
-            return;
-        } 
-        res.status(200).json(updatePost);
-    }
-    catch(err) {
-        console.log(err);
-        res.status(400).json(err);
+            where: { id: req.params.id, user_id: req.session.user_id },
+        });
+
+        if (updatePost[0] === 0) {
+            res.status(404).json({ message: 'Post not found or you are not authorized to update it' });
+        } else {
+            res.status(200).json({ message: 'Post updated successfully' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ error: 'Failed to update the post' });
     }
 });
 
-// delete post
+// DELETE post
 router.delete('/:id', withAuth, async (req, res) => {
     try {
+        // Delete a specific post by its id, making sure the user owns the post
         const deletePost = await Post.destroy({
-        where: {
-            id: req.params.id
+            where: { id: req.params.id, user_id: req.session.user_id },
+        });
+
+        if (!deletePost) {
+            res.status(404).json({ message: 'Error: Post not found or you are not authorized to delete.' });
+        } else {
+            res.status(200).json({ message: 'Post deleted successfully.' });
         }
-    })
-    if (!deletePost) {
-        res.status(404).json({ message: "Cannot delete a post that doesn't exist!" })
-        return;
-        }
-        res.status(200).json(deletePost);
-    }
-    catch(err) {
-        console.log(err);
-        res.status(400).json(err);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Post failed to delete.' });
     }
 });
 

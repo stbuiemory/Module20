@@ -5,7 +5,7 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-login').value.trim();
 
     if(!username || !password) {
-        alert('You must enter your username and password before signing in.')
+        alert('Please enter username and password.')
     }
 
     if (username && password) {
@@ -21,7 +21,7 @@ const loginFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace('/dashboard');
         } if (response.status === 400) {
-            alert('Your username or password is incorrect. Please try again!');
+            alert('Error with username or password. Please try again.');
         }
         else if (response.status >= 500) {
             alert('Server error: Unable to sign in.')

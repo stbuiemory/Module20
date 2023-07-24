@@ -1,21 +1,18 @@
 <section>
     <div class="container">
         {{#each posts as |post|}}
-        
-            <div class="box">
-                <a href="/post/{{id}}">  
-                    <div class="content has-text-black">
-                        <h4> {{title}} </h4> 
-                        <p class="post"> {{post_body}} </p>
-                        <p> <small> {{format_date created_at}} </small> </p>
-                    </div>
-                </a>
-            </div>
-        
-
+        <div class="box">
+            <a href="/post/{{id}}">
+                <div class="content has-text-black">
+                    <h4 class="title">{{title}}</h4>
+                    <p class="post">{{post_body}}</p>
+                    <p><small>{{format_date created_at}}</small></p>
+                </div>
+            </a>
+        </div>
+        {{/each}}
         {{else}}
-        <h4 class="mt-5"><strong> No Posts Yet :/ </strong></h4>
+        <h4 class="mt-5"><strong>No Posts Yet :/</strong></h4>
         {{/each}}
     </div>
 </section>
-
