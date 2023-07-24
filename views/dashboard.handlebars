@@ -1,0 +1,143 @@
+<section>
+    <div class="container">
+        <div class="content mt-3">
+            <h3>{{username}}'s Posts</h3>
+        </div>
+
+        {{#if postlength}}
+        {{#each posts as |post|}}
+        <div class="box">
+            <div class="content">   
+                <h5> {{title}} </h5>
+                <p>{{post_body}}</p>
+                <p><small> {{format_date created_at}} </small></p>
+
+                <div class="buttons has-addons is-right">
+                    <button class="button is-info is-small js-modal-trigger" data-toggle="modal" data-target="editPost{{id}}">
+                        <span class="icon is-small">
+                            <i class="fas fa-pencil"></i>
+                        </span>
+                        <span>
+                            <a class="has-text-white">Edit</a>
+                        </span>
+                    </button>
+
+                    <button class="button is-danger is-small js-modal-trigger" data-target="deletePost{{id}}">
+                        <span class="icon is-small">
+                            <i class="fas fa-trash-can"></i>
+                        </span>
+                        <span>
+                            <a class="has-text-white">Delete</a>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+                <button class="button is-info js-modal-trigger" data-target="addPost"> 
+                    <span class="icon is-small">
+                        <i class="fas fa-circle-plus"></i>
+                    </span>
+                    <span> 
+                    <a class="has-text-white"> Create New Post </a>
+                    </span>
+                </button>
+</section>
+
+{{!-- edit post modal --}}
+<div class="modal" id="editPost{{id}}">
+    <div class="modal-background">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title"> Editing Post: {{title}} </p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label"> Edit Title: </label>
+                    <div class="control">
+                        <textarea class="textarea" id="title{{id}}" rows="1"> {{title}} </textarea>
+                    </div>
+                </div>
+                <textarea class="textarea" id="editedPost{{id}}"> {{post_body}} </textarea>
+            </section>
+
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="edit-post-save" data-id="{{id}}">Save Changes</button>
+                <button class="button" id="cancel">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+{{!-- delete post modal --}}
+<div class="modal" id="deletePost{{id}}" >
+    <div class="modal-background">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title"> Deleting Post: {{title}} </p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+
+            <section class="modal-card-body">
+                <p>Are you sure you want to delete your <strong> {{title}} </strong>post?</p>
+            </section>
+
+            <footer class="modal-card-foot">
+                <button class="button is-danger" id="delete-post" data-id="{{id}}">Confirm</button>
+                <button class="button" id="cancel">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>
+{{/each}}
+{{else}}
+<h4 class="mt-5 mb-5"> <strong> No Posts Yet :/ </strong></h4>
+<button class="button is-info js-modal-trigger" data-target="addPost"> 
+    <span class="icon is-small">
+        <i class="fas fa-circle-plus"></i>
+    </span>
+    <span> 
+    <a class="has-text-white"> Create New Post </a>
+    </span>
+</button>
+{{/if}}
+
+{{!-- new post modal --}}
+<div class="modal" id="addPost">
+    <div class="modal-background">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">New Post</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label"> Title </label>
+                    <div class="control">
+                        <input class="input" id="new-post-title" type="text" placeholder="Enter a title for your post (required)">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label"> Content </label>
+                    <div class="control">
+                        <textarea class="textarea" id="new-post-body" placeholder="Write your post here..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="new-post-save" data-id="{{id}}">Submit</button>
+                <button class="button" id="cancel">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+{{!-- script tag to open and close modals --}}
+<script src="/javascript/modal.js"></script>
+
+
+<script src="/javascript/post.js"></script>

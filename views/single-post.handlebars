@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="box">
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/128x128.png">
+                </p>
+            </figure>
+            
+            <div class="media-content">
+                <div class="content">
+                    <p> <strong> {{post.title}} </strong> </p>
+                    <p>{{post.post_body}}</p>
+                    <p> <small>{{post.user.username}} · {{format_date post.created_at}} ·</small> </p>
+                </div>
+
+                {{#if loggedIn}}
+                <div class="buttons has-addons is-right mt-5 js-modal-trigger" data-target="addComment">
+                    <button class="button is-info is-small">
+                        <span class="icon is-small">
+                            <i class="fas fa-circle-plus"></i>
+                        </span>
+                        <span>Add New Comment</span>
+                    </button>
+                </div>   
+                {{/if}}
+
+                {{#if post.comments}}
+                {{#each post.comments}}
+                <article class="media">
+                    <figure class="media-left">
+                    <p class="image is-48x48">
+                        <img src="https://bulma.io/images/placeholders/96x96.png">
+                    </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content mb-3">
+                            {{#if (isEqual ../user user_id) }}
+                            <p> {{comment_body}} </p>
+                            <p> <strong>{{user.username}}</strong> · <small>{{format_date created_at}}</small> · </p>
+
+                            <div class="buttons has-addons is-right js-modal-trigger"  id="edit-comment-button" data-target="editComment{{id}}">
+                                <button class="button is-info is-outlined is-small">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-pencil"></i>
+                                    </span>
+                                    <span>Edit Comment</span>
+                                </button>
+
+                                <button class="button is-danger is-small js-modal-trigger" data-target="deleteComment{{id}}">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-trash-can"></i>
+                                    </span>
+                                    <span>Delete Comment</span>
+                                </button>
+                            </div>
+
+                            {{else}}
+                            <p>  </p>
+                            <p> {{comment_body}} </p>
+                            <p> <small> <strong>{{user.username}}</strong> · {{format_date created_at}} · </small> </p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </article>
+
+                {{!-- edit comment modal --}}
+                <div class="modal" id="editComment{{id}}" aria-hidden="true">
+                    <div class="modal-background">
+                        <div class="modal-card">
+                            <header class="modal-card-head">
+                                <p class="modal-card-title">Editing Comment</p>
+                                <button class="delete" aria-label="close"></button>
+                            </header>
+
+                            <section class="modal-card-body">
+                                <textarea class="textarea" id="edited-comment{{id}}">{{comment_body}}</textarea>
+                            </section>
+
+                            <footer class="modal-card-foot">
+                                <button class="button is-success" id="edit-comment-save" data-id="{{id}}">Save Changes</button>
+                                <button class="button" id="cancel">Cancel</button>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- delete comment modal --}}
+                <div class="modal" id="deleteComment{{id}}" aria-hidden="true">
+                    <div class="modal-background">
+                        <div class="modal-card">
+                            <header class="modal-card-head">
+                                <p class="modal-card-title">Deleting Comment</p>
+                                <button class="delete" aria-label="close"></button>
+                            </header>
+
+                            <section class="modal-card-body">
+                                <p>Are you sure you want to delete this comment?</p>
+                            </section>
+
+                            <footer class="modal-card-foot">
+                                <button class="button is-danger" id="delete-comment" data-id="{{id}}">Confirm</button>
+                                <button class="button" id="cancel">Cancel</button>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                {{/if}}
+                
+            </div>
+        </article>
+    </div>
+</div>
+
+{{!-- add comment modal --}}
+<div class="modal" id="addComment" aria-hidden="true">
+    <div class="modal-background">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add A New Comment</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+
+            <section class="modal-card-body">
+                <textarea class="textarea" id="new-comment-body" placeholder="Write your comment here..."></textarea>
+            </section>
+
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="new-comment-save">Save</button>
+                <button class="button" id="cancel">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<script src="/javascript/modal.js"></script>
+<script src="/javascript/comment.js"></script>
