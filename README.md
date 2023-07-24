@@ -6,7 +6,7 @@ Build a CMS-style blog site similar to a Wordpress site, where developers can pu
 ```
 <br> <!-- Double line break for creating a line break -->
 
-<p align="center"><a href="XXX">CLICK HERE FOR HEROKU LINK</a>.</p>
+<p align="center"><a href="XXX">App is still in testing mode. It's not working.  I'm sorry</a>.</p>
 
 ## 💻 Features
 
@@ -38,7 +38,8 @@ Sequelize as the ORM, and the express-session npm package for authentication.
 ## ⚙️ Testing
 
 ```sh
-Unfortunately, this app is still a work in progress and in testing mode.  Please check back.
+Unfortunately, this app is still a work in progress.  I had a lot of problems with the 
+app itself and also deploying it to Heroku. Please check back at a later time.
 ```
 
 ## 🤝 Contributors
