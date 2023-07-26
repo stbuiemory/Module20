@@ -1,9 +1,11 @@
 <h1 align="center">Tech Blogging</h1>
 
-```sh
+<div style="text-align: justify;">
 
-Build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. 
-```
+Build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog 
+posts and comment on other developers’ posts as well. 
+
+</div>
 <br> <!-- Double line break for creating a line break -->
 
 <p align="center"><a href="XXX">App is still in testing mode. It's not working.  I'm sorry</a>.</p>
