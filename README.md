@@ -52,7 +52,8 @@ Sequelize as the ORM, and the express-session npm package for authentication.
 ## ⚙️ Testing
 
 ```sh
-Unfortunately, this app is still a work in progress.  I had a lot of problems with Heroku.  I was able to get it to render and show a few of the pages, but I still need to work on it further.
+Unfortunately, this app is still a work in progress.  I had a lot of problems with Heroku.
+I was able to get it to render and show a few of the pages, but I still need to work on it further.
 ```
 
 ## 🤝 Contributors
