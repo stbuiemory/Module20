@@ -8,7 +8,7 @@ posts and comment on other developers’ posts as well.
 </div>
 <br> <!-- Double line break for creating a line break -->
 
-<p align="center"><a href="XXX">App is still in testing mode. It's not working.  I'm sorry</a>.</p>
+<p align="center"><a href="XXX">App is still in testing mode. It works partially.</a>.</p>
 
 ## 💻 Features
 
@@ -21,6 +21,16 @@ posts and comment on other developers’ posts as well.
 - Session Authentication: express-session npm package
 - Template Engine: Handlebars.js
 ```
+
+## 🎬 Installation
+```sh
+- npm i
+- mysql -u root -p (enter password) 
+- source db/schema.sql (\q afterwards)
+- npm run seed
+- npm start 
+```
+
 ## 🎬 Usage
 
 ```sh
@@ -40,15 +50,15 @@ Sequelize as the ORM, and the express-session npm package for authentication.
 ## ⚙️ Testing
 
 ```sh
-Unfortunately, this app is still a work in progress.  I had a lot of problems with the 
-app itself and also deploying it to Heroku. Please check back at a later time.
+Unfortunately, this app is still a work in progress.  I had a lot of problems with the app.  I was able to get it to render and show a few of the pages, but I still need to work on it further.
 ```
 
 ## 🤝 Contributors
 
-```sh
-None at this time.
-```
+
+<p align="left"><a href="<https://gifer.com">Gifs provided by Gifer</a>.</p>
+    </p>
+
 
 ## 📝 License
 

@@ -36,7 +36,7 @@ const sess = {
 // Middleware
 app.use(session(sess));
 
-
+// Handlebars
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
