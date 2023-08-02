@@ -34,7 +34,7 @@
                     </div>
                 </div>
             {{/each}}
-            <button class="button is-info js-modal-trigger" data-target="addPost" id="new-post-save">
+            <button class="button is-danger js-modal-trigger" data-target="addPost" id="new-post-save">
                 <span class="icon is-small">
                     <i class="fas fa-circle-plus"></i>
                 </span>
@@ -86,6 +86,27 @@
         </div>
     </div>
 </section>
+
+    <footer class="level is-fixed-bottom mt-1">
+        <div class="level-item has-text-centered">
+            <div>
+            <p class="heading">Posts</p>
+            <p class="title">0</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+            <p class="heading">Likes</p>
+            <p class="title">0</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+            <p class="heading">Comments</p>
+            <p class="title">0</p>
+            </div>
+        </div>
+    </footer>
 
 <!-- Edit Post Modals -->
 {{#each posts as |post|}}
