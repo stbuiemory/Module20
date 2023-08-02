@@ -6,7 +6,6 @@ Build a CMS-style blog site similar to a Wordpress site, where developers can pu
 posts and comment on other developers’ posts as well. 
 
 </div>
-<br> <!-- Double line break for creating a line break -->
 
  <p align="left">App is still in testing mode. It works partially and only on localhost. I have provided the Heroku link though:  <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">Heroku Link</a>.</p>
 
