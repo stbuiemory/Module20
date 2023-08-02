@@ -1,6 +1,27 @@
 <section>
+    {{!-- I need to add code so that the titles will update for each post, likes, and comments for each user. --}}
+    <div class="level is-fixed-bottom has-background-primary">
+        <div class="level-item has-text-centered">
+            <div>
+            <p class="heading is-size-5">Posts</p>
+            <p class="title is-size-4">0</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+            <p class="heading is-size-5">Likes</p>
+            <p class="title is-size-4">0</p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+            <p class="heading is-size-5">Comments</p>
+            <p class="title is-size-4">0</p>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="content mt-3">
+        <div class="content mt-6">
             <h3>Welcome, {{username}}!</h3>
         </div>
 
@@ -44,7 +65,7 @@
             </button>
         {{else}}
             <h4 class="mt-5 mb-5"><strong>Let's create your first post.</strong></h4>
-            <button class="button is-info js-modal-trigger" data-target="addPost">
+            <button class="button has-background-grey-light js-modal-trigger" data-target="addPost">
                 <span class="icon is-small">
                     <i class="fas fa-circle-plus"></i>
                 </span>
@@ -86,27 +107,6 @@
         </div>
     </div>
 </section>
-
-    <footer class="level is-fixed-bottom mt-1">
-        <div class="level-item has-text-centered">
-            <div>
-            <p class="heading">Posts</p>
-            <p class="title">0</p>
-            </div>
-        </div>
-        <div class="level-item has-text-centered">
-            <div>
-            <p class="heading">Likes</p>
-            <p class="title">0</p>
-            </div>
-        </div>
-        <div class="level-item has-text-centered">
-            <div>
-            <p class="heading">Comments</p>
-            <p class="title">0</p>
-            </div>
-        </div>
-    </footer>
 
 <!-- Edit Post Modals -->
 {{#each posts as |post|}}
