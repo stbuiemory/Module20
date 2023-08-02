@@ -20,7 +20,6 @@ const createPostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            // Reload the dashboard after successful post creation
             document.location.reload('/dashboard');
         } else {
             alert('Error creating post :(');
@@ -55,7 +54,6 @@ const editPostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            // Reload the dashboard after successful post update
             document.location.reload('/dashboard');
         } else {
             alert(response.statusText);
@@ -87,7 +85,6 @@ const deletePostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            // Reload the dashboard after successful post deletion
             document.location.reload('/dashboard');
         } else {
             alert(response.statusText);
