@@ -4,12 +4,14 @@ const commentEventHandler = async (event) => {
 
     // Get the comment input value
     const comment = document.querySelector('#new-comment-body').value.trim();
+    console.log(window.location.toString().split('/'));
 
     // Extract the post ID from the current URL
     const urlSplit = window.location.toString().split('/');
     const postID = urlSplit[urlSplit.length - 1];
+    console.log(postID)
 
-    // Validate the comment input
+     // Validate the comment input
     if (!comment) {
         alert('Error: Empty comment. Please try again.');
         return;
@@ -20,22 +22,19 @@ const commentEventHandler = async (event) => {
     }
 
     // Send the new comment data to the server via a POST request
-    try {
+    if(comment) {
         const response = await fetch('/api/comments', {
             method: 'POST',
             body: JSON.stringify({ comment_body: comment, post_id: postID }),
-            headers: { 'Content-Type': 'application/json' },
-        });
+            headers: { 'Content-Type': 'application/json' }
+        })
         if (response.ok) {
-            // Reload the page after successful comment submission
-            document.location.reload(`/post/${postID}`);
-            console.log('Comment posted!');
-        } else {
-            alert('Error posting comment. Please try again.');
+            document.location.reload(`/post/${postID}`)
+            console.log('Comment posted!')
         }
-    } catch (err) {
-        console.error(err);
-        alert('Error posting comment. Please try again.');
+        if (response >= 400) {
+            alert('Error posting comment. Please try again.')
+        }
     }
 };
 
@@ -51,24 +50,18 @@ const editCommentHandler = async (event) => {
     // Get the comment ID and edited comment input value
     const commentID = event.target.getAttribute('data-id');
     const editedComment = document.querySelector(`#edited-comment${commentID}`).value.trim();
-    console.log(commentID, editedComment);
+    console.log(commentID, editedComment)
 
-    // Send the edited comment data to the server via a PUT request
-    try {
-        const response = await fetch(`/api/comments/${commentID}`, {
-            method: 'PUT',
-            body: JSON.stringify({ id: commentID, comment_body: editedComment }),
-            headers: { 'Content-Type': 'application/json' },
-        });
-        if (response.ok) {
-            // Reload the page after successful comment update
-            document.location.reload('/');
-        } else {
-            alert('Error editing this comment. Please try again.');
-        }
-    } catch (err) {
-        console.error(err);
-        alert('Error editing this comment. Please try again.');
+    const response = await fetch(`/api/comments/${commentID}`, {
+        method: 'PUT',
+        body: JSON.stringify({ id: commentID, comment_body: editedComment}),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    if(response.ok) {
+        document.location.reload('/')
+    }
+    if (response >= 400) {
+        alert('Error editing this comment. Please try again!')
     }
 };
 
@@ -85,22 +78,15 @@ const deleteCommentHandler = async (event) => {
     const commentID = event.target.getAttribute('data-id');
     console.log(commentID);
 
-    // Send the comment ID to the server via a DELETE request
-    try {
-        const response = await fetch(`/api/comments/${commentID}`, {
-            method: 'DELETE',
-            body: JSON.stringify({ id: commentID }),
-            headers: { 'Content-Type': 'application/json' },
-        });
-        if (response.ok) {
-            // Reload the page after successful comment deletion
-            document.location.reload('/');
-        } else {
-            alert('Error deleting this comment. Please try again.');
-        }
-    } catch (err) {
-        console.error(err);
-        alert('Error deleting this comment. Please try again.');
+    const response = await fetch(`/api/comments/${commentID}`, {
+        method: 'DELETE',
+        body: JSON.stringify({ id: commentID }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    if (response.ok) {document.location.reload('/')
+    }
+    if (response >= 400) {
+        alert('Error deleting this comment. Please try again!')
     }
 };
 

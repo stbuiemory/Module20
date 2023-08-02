@@ -67,7 +67,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
-// CREATE new post
+// POST new post
 router.post('/', withAuth, async (req, res) => {
     try {
         // Create a new post associated with the user
@@ -83,7 +83,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// UPDATE post
+// PUT post
 router.put('/:id', withAuth, async (req, res) => {
     try {
         // Update a specific post by its id, making sure the user owns the post

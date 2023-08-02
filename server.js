@@ -23,13 +23,13 @@ const hbs = exphbs.create({ helpers });
 const sess = {
     secret: 'Apple Tree', 
     cookie: {
-        maxAge: 600000, // Session expiration time (in milliseconds)
+        maxAge: 600000, 
     },
     resave: false,
     rolling: true,
     saveUninitialized: true,
     store: new SequelizeStore({
-        db: sequelize, // Storing sessions in the Sequelize database
+        db: sequelize, 
     }),
 };
 

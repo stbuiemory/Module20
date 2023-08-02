@@ -45,3 +45,5 @@ router.get('/', withAuth, async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch user posts.' });
     }
 });
+
+module.exports = router;
