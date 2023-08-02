@@ -8,7 +8,10 @@ posts and comment on other developers’ posts as well.
 </div>
 <br> <!-- Double line break for creating a line break -->
 
-<p align="center"><a href="XXX">App is still in testing mode. It works partially.</a>.</p>
+ <p align="left">App is still in testing mode. It works partially and only on localhost. I have provided the Heroku link though:  <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">Heroku Link</a>.</p>
+
+  <p align="left">Here is the video of what it looked like on my localhost and should be the same for others:  <a href="https://drive.google.com/file/d/10m9VJQbW0A1hDPYmqEpICdJJba87YvXG/view">Demo</a>.</p>
+
 
 ## 💻 Features
 
