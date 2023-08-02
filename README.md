@@ -7,7 +7,7 @@ posts and comment on other developers’ posts as well.
 
 </div>
 
- <p align="left">App is still in testing mode. It works partially and only on localhost. I have provided the Heroku link though:  <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">Heroku Link</a>.</p>
+ <p align="left">App is working partially. Here is the <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">Heroku Link</a>.</p>
 
   <p align="left">Here is the video of what it looked like on my localhost and should be the same for others:  <a href="https://drive.google.com/file/d/10m9VJQbW0A1hDPYmqEpICdJJba87YvXG/view">Demo</a>.</p>
 
@@ -52,7 +52,7 @@ Sequelize as the ORM, and the express-session npm package for authentication.
 ## ⚙️ Testing
 
 ```sh
-Unfortunately, this app is still a work in progress.  I had a lot of problems with the app.  I was able to get it to render and show a few of the pages, but I still need to work on it further.
+Unfortunately, this app is still a work in progress.  I had a lot of problems with Heroku.  I was able to get it to render and show a few of the pages, but I still need to work on it further.
 ```
 
 ## 🤝 Contributors
