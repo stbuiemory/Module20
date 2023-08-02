@@ -5,74 +5,102 @@
         </div>
 
         {{#if postlength}}
-        {{#each posts as |post|}}
-        <div class="box">
-            <div class="content">   
-                <h5 class="title">{{title}}</h5>
-                <p>{{post_body}}</p>
-                <p><small>{{format_date created_at}}</small></p>
+            {{#each posts as |post|}}
+                <div class="box">
+                    <div class="content">
+                        <h5 class="title">{{title}}</h5>
+                        <p>{{post_body}}</p>
+                        <p><small>{{format_date created_at}}</small></p>
 
-                <div class="buttons has-addons is-right">
-                    <button class="button is-info is-small js-modal-trigger" data-toggle="modal" data-target="editPost{{id}}">
-                        <span class="icon is-small">
-                            <i class="fas fa-pencil"></i>
-                        </span>
-                        <span class="has-text-white">
-                            Edit
-                        </span>
-                    </button>
+                        <div class="buttons has-addons is-right">
+                            <button class="button is-info is-small js-modal-trigger" data-toggle="modal" data-target="editPost{{id}}">
+                                <span class="icon is-small">
+                                    <i class="fas fa-pencil"></i>
+                                </span>
+                                <span class="has-text-white">
+                                    Edit
+                                </span>
+                            </button>
 
-                    <button class="button is-danger is-small js-modal-trigger" data-target="deletePost{{id}}">
-                        <span class="icon is-small">
-                            <i class="fas fa-trash-alt"></i>
-                        </span>
-                        <span class="has-text-white">
-                            Delete
-                        </span>
-                    </button>
+                            <button class="button is-danger is-small js-modal-trigger" data-target="deletePost{{id}}">
+                                <span class="icon is-small">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                                <span class="has-text-white">
+                                    Delete
+                                </span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+            {{/each}}
+            <button class="button is-success js-modal-trigger" data-target="addPost" id="new-post-save">
+                <span class="icon is-small">
+                    <i class="fas fa-circle-plus"></i>
+                </span>
+                <span class="has-text-white">
+                    Create New Post
+                </span>
+            </button>
+        {{else}}
+            <h4 class="mt-5 mb-5"><strong>Let's create your first post.</strong></h4>
+            <button class="button is-info js-modal-trigger" data-target="addPost">
+                <span class="icon is-small">
+                    <i class="fas fa-circle-plus"></i>
+                </span>
+                <span class="has-text-white">
+                    Create New Post
+                </span>
+            </button>
+        {{/if}}
+
+        <!-- New Post Form -->
+        <div class="modal" id="addPost">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Create New Post</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <form>
+                        <div class="field">
+                            <label class="label">Title</label>
+                            <div class="control">
+                                <input class="input" type="text" id="new-post-title" placeholder="Enter post title">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Post Body</label>
+                            <div class="control">
+                                <textarea class="textarea" id="new-post-body" placeholder="Enter post body"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" id="new-post-submit">Create Post</button>
+                    <button class="button" id="cancel">Cancel</button>
+                </footer>
             </div>
         </div>
-        {{/each}}
-        <button class="button is-info js-modal-trigger" data-target="addPost"> 
-            <span class="icon is-small">
-                <i class="fas fa-circle-plus"></i>
-            </span>
-            <span class="has-text-white"> 
-                Create New Post
-            </span>
-        </button>
     </div>
 </section>
 
-{{!-- Edit Post --}}
-<div class="modal" id="editPost{{id}}">
-    <!-- Content here -->
-</div>
+<!-- Edit Post Modals -->
+{{#each posts as |post|}}
+    <div class="modal" id="editPost{{id}}">
+        <!-- Content for Edit Post Modal -->
+    </div>
+{{/each}}
 
-{{!-- Delete Post --}}
-<div class="modal" id="deletePost{{id}}">
-    <!-- Content here -->
-</div>
+<!-- Delete Post Modals -->
+{{#each posts as |post|}}
+    <div class="modal" id="deletePost{{id}}">
+        <!-- Content for Delete Post Modal -->
+    </div>
+{{/each}}
 
-{{else}}
-<h4 class="mt-5 mb-5"><strong>No Posts Yet :/</strong></h4>
-<button class="button is-info js-modal-trigger" data-target="addPost"> 
-    <span class="icon is-small">
-        <i class="fas fa-circle-plus"></i>
-    </span>
-    <span class="has-text-white"> 
-        Create New Post
-    </span>
-</button>
-{{/if}}
-
-{{!-- New Post --}}
-<div class="modal" id="addPost">
-    <!-- Content here -->
-</div>
-
-{{!-- Open and Close Modals --}}
-<script src="/public/modal.js"></script>
-
-<script src="/public/post.js"></script>
+<!-- Open and Close Modals -->
+<script src="/modal.js"></script>
+<script src="/post.js"></script>

@@ -21,7 +21,7 @@
                         <a class="navbar-item" href="/dashboard">Dashboard</a>
 
                         {{#if loggedIn}}
-                        <a class="navbar-item" id="logout" href="/">Logout</a> 
+                        <a class="navbar-item" id="log-out" href="/">Logout</a> 
 
                         {{else}}
                         <a class="navbar-item" href="/login">Login</a>
@@ -32,7 +32,7 @@
         </div>
         <div class="hero-body">
             <div class="container has-text-centered">
-                <p class="title"> Tech Blogging </p>
+                <h1 class="title"> Tech Blogging </h1>
                 <p class="subtitle"> Come share your ideas, opinion, and thoughts about the wonderful world of tech!</p>
             </div>
         </div>
@@ -43,7 +43,7 @@
     </section>
 
         {{#if loggedIn}}
-        <script src="/public/logout.js"></script>
+        <script src="/logout.js"></script>
         {{/if}}
 
     </body>

@@ -20,7 +20,8 @@ const createPostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.reload('/dashboard');
+            // Redirect to the dashboard page after successful post creation
+            window.location.href = '/dashboard';
         } else {
             alert('Error creating post :(');
         }
@@ -30,7 +31,7 @@ const createPostHandler = async (event) => {
     }
 };
 
-// Attach the createPostHandler function to the new post button
+// Attach the createPostHandler function to the "Create Post" button
 const newPostButton = document.querySelector('#new-post-save');
 newPostButton.addEventListener('click', createPostHandler);
 
@@ -54,7 +55,8 @@ const editPostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.reload('/dashboard');
+            // Reload the page after successful post edit
+            document.location.reload();
         } else {
             alert(response.statusText);
         }
@@ -85,7 +87,8 @@ const deletePostHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.reload('/dashboard');
+            // Reload the page after successful post deletion
+            document.location.reload();
         } else {
             alert(response.statusText);
         }
