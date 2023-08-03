@@ -9,7 +9,7 @@ posts and comment on other developers’ posts as well.
 
  <p align="left">App is still in testing mode. It works partially. I have provided the <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">Heroku Link</a>.</p>
 
-  <p align="left">Here is the video of what it looked like on my localhost and should be the same for others:  <a href="https://drive.google.com/file/d/10m9VJQbW0A1hDPYmqEpICdJJba87YvXG/view">Demo</a>.</p>
+  <p align="left">Here is the <a href="https://drive.google.com/file/d/1Kb9cMoT3bwzLt4Kzi2rRRbr9gHB7QhAS/view">Demo</a>.</p>
 
 
 ## 💻 Features
