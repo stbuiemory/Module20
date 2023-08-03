@@ -3,11 +3,11 @@
 </div>
 
 <section>
-    <div class="container is-halfheight">
+    <div class="container is-halfheight has-background-success-light">
         {{#each posts as |post|}}
             <div class="box">
                 <a href="/post/{{id}}">
-                    <div class="content has-text-centered has-text-black">
+                    <div class="content has-text-centered has-text-black has-background-grey-lighter">
                         <h4 class="title">{{title}}</h4>
                         <p class="post">{{post_body}}</p>
                         <p><small>{{format_date created_at}}</small></p>

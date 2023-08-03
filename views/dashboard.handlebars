@@ -1,5 +1,9 @@
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+    <img src="/images/dashboard_bgd.gif" width="100%" height="100%" alt="Background Image">
+</div>
+
 <section>
-    {{!-- I need to add code so that the titles will update for each post, likes, and comments for each user. --}}
+    {{!-- I need to add code so that the titles will update for each post, likes, and comments for each --}}
     <div class="level is-fixed-bottom has-background-primary">
         <div class="level-item has-text-centered">
             <div>
@@ -20,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container has-background-success-light has-text-centered">
         <div class="content mt-6">
             <h3>Welcome, {{username}}!</h3>
         </div>
@@ -34,7 +38,7 @@
                         <p><small>{{format_date created_at}}</small></p>
 
                         <div class="buttons has-addons is-right">
-                            <button class="button is-info is-small js-modal-trigger" data-toggle="modal" data-target="editPost{{id}}">
+                            <button class="button has-background-grey-light is-small js-modal-trigger" data-toggle="modal" data-target="editPost{{id}}">
                                 <span class="icon is-small">
                                     <i class="fas fa-pencil"></i>
                                 </span>
@@ -55,7 +59,7 @@
                     </div>
                 </div>
             {{/each}}
-            <button class="button is-danger js-modal-trigger" data-target="addPost" id="new-post-save">
+            <button class="button has-background-grey-light js-modal-trigger" data-target="addPost" id="new-post-save">
                 <span class="icon is-small">
                     <i class="fas fa-circle-plus"></i>
                 </span>

@@ -31,6 +31,8 @@ posts and comment on other developers’ posts as well.
 - source db/schema.sql (\q afterwards)
 - npm run seed
 - npm start 
+
+Note:  Please adjust config.js according to your hostname.
 ```
 
 ## 🎬 Usage
