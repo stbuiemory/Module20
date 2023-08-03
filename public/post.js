@@ -96,5 +96,5 @@ const deletePostHandler = async (event) => {
 };
 
 // Attach the deletePostHandler function to all delete post buttons
-const deleteButtons = document.querySelectorAll('#delete-post');
-[...deleteButtons].forEach(deleteBtn => deleteBtn.addEventListener('click', deletePostHandler));
+// const deleteButtons = document.querySelectorAll('#delete-post');
+// [...deleteButtons].forEach(deleteBtn => deleteBtn.addEventListener('click', deletePostHandler));
