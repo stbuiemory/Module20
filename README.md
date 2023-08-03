@@ -7,9 +7,10 @@ posts and comment on other developers’ posts as well.
 
 </div>
 
- <p align="left">App is still in testing mode. It works partially. I have provided the <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">Heroku Link</a>.</p>
+ <p align="left">App is still in testing mode. It works partially. Here is the <a href="https://techblogging12345-0e531ee0eeec.herokuapp.com/">HEROKU LINK</a>.</p>
 
-  <p align="left">Here is the <a href="https://drive.google.com/file/d/1Kb9cMoT3bwzLt4Kzi2rRRbr9gHB7QhAS/view">Demo</a>.</p>
+ <p align="left">Here is a <a href="https://drive.google.com/file/d/1Kb9cMoT3bwzLt4Kzi2rRRbr9gHB7QhAS/view">DEMO</a>.</p>
+<img src="./public/images/tb_walkthrough.gif" width="640" height="480"></img>
 
 
 ## 💻 Features
